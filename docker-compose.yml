@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  webapp:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=1433
+      - DB_NAME=smartwatch
+      - DB_USER=sa
+      - DB_PASSWORD=quocan123
+    networks:
+      - watchstore-network
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=quocan123
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./scripts:/scripts
+    command: >
+      bash -c '
+        /opt/mssql/bin/sqlservr &
+        sleep 30s &&
+        /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P quocan123 -i /scripts/init.sql
+      '
+    networks:
+      - watchstore-network
+
+networks:
+  watchstore-network:
+    driver: bridge
+
+volumes:
+  sqlserver_data:
