@@ -7,8 +7,8 @@
      ```
    - Step 2: Clone your repository and start the project
      ```
-     git clone your-repository
-     cd your-project
+     git clone https://github.com/TranAnSE/smartwatch.git
+     cd smartwatch
      docker compose up -d
      ```
 
@@ -21,8 +21,8 @@
      ```
    - Step 2: Clone your repository and start the project
      ```
-     git clone your-repository
-     cd your-project
+     git clone https://github.com/TranAnSE/smartwatch.git
+     cd smartwatch
      docker compose up -d
      ```
    - Check SQL server status:
