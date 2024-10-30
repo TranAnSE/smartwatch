@@ -1,3 +1,6 @@
+# Exceptions - neccessary libraries
+!lib/*.jar
+
 # NetBeans specific #
 nbproject/private/
 build/
@@ -11,5 +14,4 @@ nb-configuration.xml
 
 # Package Files #
 *.jar
-*.war
 *.ear
