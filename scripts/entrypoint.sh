@@ -8,9 +8,9 @@ set -e
 echo "Waiting for SQL Server to start..."
 sleep 30
 
-# Run initialization script
+# Run initialization script with TrustServerCertificate
 echo "Running initialization script..."
-/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -i /docker-entrypoint-initdb.d/init.sql
+/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -i /docker-entrypoint-initdb.d/init.sql -C -N -t 30
 
 # Keep container running
 wait $!

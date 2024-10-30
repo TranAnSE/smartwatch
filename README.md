@@ -33,7 +33,7 @@
 
     - ### Xóa images cũ
     ```
-    docker rmi smartwatch-db smartwatch-webapp
+    docker rmi $(docker images -aq)
     ```
 
     - ### Build và chạy lại
