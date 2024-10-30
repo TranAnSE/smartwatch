@@ -1,11 +1,52 @@
-﻿-- Creating the database
-IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'smartwatch')
+﻿USE [master]
+GO
+
+/*******************************************************************************
+   Drop database if it exists
+********************************************************************************/
+IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'smartwatch')
 BEGIN
-    CREATE DATABASE smartwatch;
+	ALTER DATABASE [smartwatch] SET OFFLINE WITH ROLLBACK IMMEDIATE;
+	ALTER DATABASE [smartwatch] SET ONLINE;
+	DROP DATABASE [smartwatch];
 END
+
 GO
-USE smartwatch;
+
+CREATE DATABASE [smartwatch]
 GO
+
+USE [smartwatch]
+GO
+
+/*******************************************************************************
+	Drop tables if exists
+*******************************************************************************/
+DECLARE @sql nvarchar(MAX) 
+SET @sql = N'' 
+
+SELECT @sql = @sql + N'ALTER TABLE ' + QUOTENAME(KCU1.TABLE_SCHEMA) 
+    + N'.' + QUOTENAME(KCU1.TABLE_NAME) 
+    + N' DROP CONSTRAINT ' -- + QUOTENAME(rc.CONSTRAINT_SCHEMA)  + N'.'  -- not in MS-SQL
+    + QUOTENAME(rc.CONSTRAINT_NAME) + N'; ' + CHAR(13) + CHAR(10) 
+FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS AS RC 
+
+INNER JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS KCU1 
+    ON KCU1.CONSTRAINT_CATALOG = RC.CONSTRAINT_CATALOG  
+    AND KCU1.CONSTRAINT_SCHEMA = RC.CONSTRAINT_SCHEMA 
+    AND KCU1.CONSTRAINT_NAME = RC.CONSTRAINT_NAME 
+
+EXECUTE(@sql) 
+
+GO
+DECLARE @sql2 NVARCHAR(max)=''
+
+SELECT @sql2 += ' Drop table ' + QUOTENAME(TABLE_SCHEMA) + '.'+ QUOTENAME(TABLE_NAME) + '; '
+FROM   INFORMATION_SCHEMA.TABLES
+WHERE  TABLE_TYPE = 'BASE TABLE'
+
+Exec Sp_executesql @sql2 
+GO 
 
 -- Table structure for table `categories`
 CREATE TABLE categories (
