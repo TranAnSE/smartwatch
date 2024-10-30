@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   webapp:
     build: .
@@ -14,7 +16,7 @@ services:
       - DB_USER=sa
       - DB_PASSWORD=CZR#1*QZMpN0zx0b
     networks:
-      - watchstore-network
+      - smartwatch_network
 
   db:
     build:
@@ -25,24 +27,25 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=CZR#1*QZMpN0zx0b
       - MSSQL_PID=Developer
-      - TrustServerCertificate=true
     ports:
       - "1433:1433"
     volumes:
       - sqlserver_data:/var/opt/mssql
       - ./scripts:/scripts
     healthcheck:
-      test: "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P CZR#1*QZMpN0zx0b -Q 'SELECT 1' -C -N || exit 1"
+      test: "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P CZR#1*QZMpN0zx0b -Q 'SELECT 1' -C -N -t 30 || exit 1"
       interval: 10s
       retries: 10
       start_period: 10s
       timeout: 3s
     networks:
-      - watchstore-network
+      - smartwatch_network
 
 networks:
-  watchstore-network:
+  smartwatch_network:
+    name: smartwatch_network
     driver: bridge
 
 volumes:
   sqlserver_data:
+    name: sqlserver_data
