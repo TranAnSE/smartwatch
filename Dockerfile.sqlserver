@@ -25,6 +25,11 @@ COPY ./scripts/init.sql /docker-entrypoint-initdb.d/
 COPY ./scripts/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+# Create odbc.ini with TrustServerCertificate=yes
+RUN echo "[ODBC Driver 18 for SQL Server]" > /etc/odbc.ini && \
+    echo "Driver = ODBC Driver 18 for SQL Server" >> /etc/odbc.ini && \
+    echo "TrustServerCertificate = yes" >> /etc/odbc.ini
+
 USER mssql
 
 ENTRYPOINT ["/entrypoint.sh"]
