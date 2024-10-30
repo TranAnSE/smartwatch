@@ -1,11 +1,10 @@
 ﻿-- Creating the database
-
-USE master;
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'smartwatch')
+BEGIN
+    CREATE DATABASE smartwatch;
+END
 GO
-CREATE DATABASE [smartwatch];
-GO
-
-USE [smartwatch];
+USE smartwatch;
 GO
 
 -- Table structure for table `categories`
