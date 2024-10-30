@@ -24,17 +24,18 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=CZR#1*QZMpN0zx0b
+      - MSSQL_PID=Express
     ports:
       - "1433:1433"
     volumes:
       - sqlserver_data:/var/opt/mssql
       - ./scripts:/scripts
     healthcheck:
-      test: "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P CZR#1*QZMpN0zx0b -Q 'SELECT 1' || exit 1"
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "CZR#1*QZMpN0zx0b" -Q "SELECT 1" || exit 1
       interval: 10s
-      retries: 10
-      start_period: 10s
-      timeout: 3s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     command: bash -c "/opt/mssql/bin/sqlservr & sleep 30s && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'CZR#1*QZMpN0zx0b' -i /scripts/init.sql & wait"
     networks:
       - watchstore-network
