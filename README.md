@@ -25,11 +25,18 @@
      cd smartwatch
      docker compose up -d
      ```
-   - Check SQL server status:
-     ```
-     chmod +x scripts/wait-for-it.sh
-     ```
-   - Check container log:
-     ```
-     docker-compose logs db
-     ```
+3. **Ubuntu/Debian Server:**
+    - ### Dừng và xóa containers hiện tại
+    ```
+    docker compose down -v
+    ```
+
+    - ### Xóa images cũ
+    ```
+    docker rmi smartwatch-db smartwatch-webapp
+    ```
+
+    - ### Build và chạy lại
+    ```
+    docker compose up --build
+    ```
