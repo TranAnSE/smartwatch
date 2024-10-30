@@ -17,6 +17,8 @@ services:
       - DB_PASSWORD=CZR#1*QZMpN0zx0b
     networks:
       - smartwatch_network
+    restart: on-failure
+    entrypoint: ["/bin/bash", "-c", "sleep 10 && /usr/local/tomcat/bin/startup.sh"]
 
   db:
     build:
@@ -36,7 +38,7 @@ services:
       test: "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P CZR#1*QZMpN0zx0b -Q 'SELECT 1' -C -N -t 30 || exit 1"
       interval: 10s
       retries: 10
-      start_period: 10s
+      start_period: 30s
       timeout: 3s
     networks:
       - smartwatch_network
