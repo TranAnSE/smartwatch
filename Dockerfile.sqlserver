@@ -6,14 +6,15 @@ USER root
 RUN apt-get update && \
     apt-get install -y curl gnupg2
 
-# Add Microsoft repository
+# Add Microsoft repository and install SQL Server tools
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
-# Install SQL Server tools
-RUN apt-get update && \
+    curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update && \
     ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev && \
     rm -rf /var/lib/apt/lists/*
+
+# Add SQL Server tools to PATH
+ENV PATH="/opt/mssql-tools18/bin:${PATH}"
 
 # Create directory for init scripts
 RUN mkdir -p /docker-entrypoint-initdb.d
@@ -24,11 +25,6 @@ COPY ./scripts/init.sql /docker-entrypoint-initdb.d/
 # Create and set permissions for startup script
 COPY ./scripts/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-
-# Create odbc.ini with TrustServerCertificate=yes
-RUN echo "[ODBC Driver 18 for SQL Server]" > /etc/odbc.ini && \
-    echo "Driver = ODBC Driver 18 for SQL Server" >> /etc/odbc.ini && \
-    echo "TrustServerCertificate = yes" >> /etc/odbc.ini
 
 USER mssql
 
