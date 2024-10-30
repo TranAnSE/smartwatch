@@ -12,7 +12,7 @@ services:
       - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
-      - DB_PASSWORD=quocan123
+      - DB_PASSWORD=CZR#1*QZMpN0zx0b
     networks:
       - watchstore-network
 
@@ -20,7 +20,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=quocan123
+      - MSSQL_SA_PASSWORD=CZR#1*QZMpN0zx0b
     ports:
       - "1433:1433"
     volumes:
@@ -31,7 +31,7 @@ services:
       bash -c '
         /opt/mssql/bin/sqlservr &
         sleep 30s &&
-        /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P quocan123 -i /scripts/init.sql
+        /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P CZR#1*QZMpN0zx0b -i /scripts/init.sql
       '
     networks:
       - watchstore-network
