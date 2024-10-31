@@ -21,7 +21,6 @@ public class DBContext {
                 + "database=%s;"
                 + "user=%s;"
                 + "password=%s;"
-                + "encrypt=true;"  // Changed from false to true
                 + "trustServerCertificate=true",  // Removed semicolon from the end
                 host, port, dbName, username, password);
 
