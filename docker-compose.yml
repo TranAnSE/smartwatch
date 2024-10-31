@@ -10,9 +10,8 @@ services:
     environment:
       # Environment variables for SQL Server
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=CZR#1*QZMpN0zx0b
+      - MSSQL_SA_PASSWORD=AnPassw0rd@123
       - MSSQL_PID=Developer
-      - MSSQL_ENCRYPT=OPTIONAL
       - MSSQL_TRUST_CERT=true
       - MSSQL_ENCRYPT=false
       # Environment variables for the web application
@@ -20,7 +19,7 @@ services:
       - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
-      - DB_PASSWORD=CZR#1*QZMpN0zx0b
+      - DB_PASSWORD=AnPassw0rd@123
       - TrustServerCertificate=true
 
     volumes:

@@ -21,9 +21,9 @@ public class DBContext {
             // Lấy biến môi trường
             String host = System.getenv().getOrDefault("DB_HOST", "localhost");
             String port = System.getenv().getOrDefault("DB_PORT", "1433");
-            String dbName = System.getenv("DB_NAME");
-            String username = System.getenv("DB_USER");
-            String password = System.getenv("DB_PASSWORD");
+            String dbName = System.getenv().getOrDefault("DB_NAME", "smartwatch");
+            String username = System.getenv().getOrDefault("DB_USER", "sa");
+            String password = System.getenv().getOrDefault("DB_PASSWORD", "AnPassw0rd@123");
 
             // Kiểm tra nếu biến môi trường bị thiếu
             if (dbName == null || username == null || password == null) {
@@ -35,8 +35,9 @@ public class DBContext {
                     + "database=%s;"
                     + "trustServerCertificate=true;"
                     + "encrypt=false;"
-                    + "integratedSecurity=false;" // Thêm dòng này
-                    + "loginTimeout=30;",
+                    + "integratedSecurity=false;"
+                    + "loginTimeout=30;"
+                    + "authentication=SqlPassword",
                     host, port, dbName);
 
             System.out.println("Attempting to connect to the database...");
