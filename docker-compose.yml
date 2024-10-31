@@ -17,7 +17,7 @@ services:
       - MSSQL_TCP_PORT=1433
       # Environment variables for the web application
       - DB_HOST=localhost
-      - DB_PORT=1434
+      - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=AnPassw0rd@123
