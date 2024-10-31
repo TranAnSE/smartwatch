@@ -25,7 +25,7 @@ services:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=YourStrong@Passw0rd
       - MSSQL_PID=Developer
-      - MSSQL_ENCRYPT=OPTIONAL
+      - MSSQL_ENCRYPT=false
       - MSSQL_TRUST_CERT=true
     volumes:
       - sqlserver_data:/var/opt/mssql

@@ -24,7 +24,11 @@ public class DBContext {
             String username = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "sa";
             String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "YourStrong@Passw0rd";
 
-            String url = String.format("jdbc:sqlserver://%s:%s;databaseName=%s;trustServerCertificate=true;encrypt=true;integratedSecurity=false",
+            String url = String.format("jdbc:sqlserver://%s:%s;"
+                    + "databaseName=%s;"
+                    + "trustServerCertificate=true;"
+                    + "encrypt=false;"
+                    + "integratedSecurity=false",
                     host, port, dbName);
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
