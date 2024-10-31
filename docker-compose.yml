@@ -20,6 +20,7 @@ services:
       - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=CZR#1*QZMpN0zx0b
+      - TrustServerCertificate=true
 
     volumes:
       - sqlserver_data:/var/opt/mssql  # Persistent data for SQL Server
