@@ -24,24 +24,23 @@ public class DBContext {
             String username = System.getenv("DB_USER");
             String password = System.getenv("DB_PASSWORD");
 
-            System.out.println("Connecting to database at " + host + ":" + port);
-
             String url = String.format("jdbc:sqlserver://%s:%s;"
-                    + "databaseName=%s;"
+                    + "database=%s;"
                     + "user=%s;"
                     + "password=%s;"
                     + "trustServerCertificate=true;"
                     + "encrypt=false;"
-                    + "hostNameInCertificate=*.database.windows.net;"
-                    + "loginTimeout=30;"
-                    + "authentication=SqlPassword;"
-                    + "serverName=%s;",
-                    host, port, dbName, username, password, host);
+                    + "loginTimeout=30;",
+                    host, port, dbName, username, password);
 
-            System.out.println("Generated URL: " + url);  // In ra URL để debug
-            System.out.println("Attempting connection...");
+            System.out.println("Attempting to connect with URL: " + url);
+
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url);
             System.out.println("Database connected successfully");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Database Connection Creation Failed: Driver not found");
+            ex.printStackTrace();
         } catch (SQLException ex) {
             System.out.println("Database Connection Creation Failed");
             System.out.println("Error message: " + ex.getMessage());
