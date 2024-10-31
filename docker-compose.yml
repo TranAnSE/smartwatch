@@ -6,7 +6,7 @@ services:
     container_name: smartwatch
     ports:
       - "8080:8080"  # Tomcat port
-      - "1434:1433"  # SQL Server port
+      - "1433:1433"  # SQL Server port
     environment:
       # Environment variables for SQL Server
       - ACCEPT_EULA=Y
