@@ -33,7 +33,7 @@ echo "SQL Server is ready"
 
 # Verify SQL Server connection and password
 echo "Verifying SQL Server connection..."
-/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT @@VERSION" || {
+/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT @@VERSION" -C -N || {
     echo "Failed to connect to SQL Server with provided credentials"
     exit 1
 }

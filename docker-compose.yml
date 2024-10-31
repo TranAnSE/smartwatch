@@ -14,6 +14,7 @@ services:
       - MSSQL_PID=Developer
       - MSSQL_ENCRYPT=OPTIONAL
       - MSSQL_TRUST_CERT=true
+      - MSSQL_ENCRYPT=false
       # Environment variables for the web application
       - DB_HOST=127.0.0.1
       - DB_PORT=1433
