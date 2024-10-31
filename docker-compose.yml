@@ -10,7 +10,7 @@ services:
     environment:
       - DB_HOST=db
       - DB_PORT=1433
-      - DB_NAME=smartwatch  # Thay bằng tên database của bạn
+      - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=CZR#1*QZMpN0zx0b
     networks:

@@ -28,14 +28,22 @@ public class DBContext {
 
             String url = String.format("jdbc:sqlserver://%s:%s;"
                     + "databaseName=%s;"
-                    + "loginTimeout=30;",
-                    host, port, dbName);
+                    + "user=%s;"
+                    + "password=%s;"
+                    + "trustServerCertificate=true;"
+                    + "encrypt=false;"
+                    + "hostNameInCertificate=*.database.windows.net;"
+                    + "loginTimeout=30;"
+                    + "authentication=SqlPassword;"
+                    + "serverName=%s;",
+                    host, port, dbName, username, password, host);
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url);
             System.out.println("Database connected successfully");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Database Connection Creation Failed : " + ex.getMessage());
+            System.out.println("Stack trace:");
             ex.printStackTrace();
         }
     }
