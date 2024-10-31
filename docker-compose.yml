@@ -1,32 +1,25 @@
-version: '3.8'
-
 services:
-  smartwatch:
-    build: .
-    container_name: smartwatch
+  # Web application service running on Tomcat
+  webapp:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: smartwatch-webapp
     ports:
-      - "8080:8080"  # Tomcat port
-      - "1433:1433"  # SQL Server port
+      - "8080:8080"  # Expose Tomcat port
     environment:
-      # Environment variables for SQL Server
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=AnPassw0rd@123
-      - MSSQL_PID=Developer
-      - MSSQL_TRUST_CERT=true
-      - MSSQL_ENCRYPT=false
-      - MSSQL_TCP_PORT=1433
-      # Environment variables for the web application
-      - DB_HOST=localhost
+      # Database connection configuration
+      - DB_HOST=sqlserver  # Points to SQL Server container
       - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=AnPassw0rd@123
       - TrustServerCertificate=true
-
-    volumes:
-      - sqlserver_data:/var/opt/mssql  # Persistent data for SQL Server
     networks:
       - smartwatch_network
+    depends_on:
+      sqlserver:
+        condition: service_healthy  # Wait for SQL Server to be healthy
     restart: on-failure
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080"]
@@ -35,9 +28,39 @@ services:
       retries: 3
       start_period: 40s
 
+  # SQL Server service
+  sqlserver:
+    build:
+      context: .
+      dockerfile: Dockerfile.sqlserver
+    container_name: smartwatch-sqlserver
+    ports:
+      - "1433:1433"  # Expose SQL Server port
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=AnPassw0rd@123
+      - MSSQL_PID=Developer
+      - MSSQL_TRUST_CERT=true
+      - MSSQL_ENCRYPT=false
+      - MSSQL_TCP_PORT=1433
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - smartwatch_network
+    restart: on-failure
+    healthcheck:
+      # Check if SQL Server is responsive using sqlcmd with -C -N flags
+      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ${MSSQL_SA_PASSWORD} -Q "SELECT 1" -C -N || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+# Define network for container communication
 networks:
   smartwatch_network:
     driver: bridge
 
+# Define persistent volume for SQL Server data
 volumes:
   sqlserver_data:

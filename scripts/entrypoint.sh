@@ -42,6 +42,5 @@ echo "Verifying SQL Server connection..."
 echo "Running initialization script..."
 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -i /docker-entrypoint-initdb.d/init.sql -C -N -t 30
 
-# Start Tomcat
-echo "Starting Tomcat..."
-/usr/local/tomcat/bin/catalina.sh run
+# Keep container running
+tail -f /dev/null

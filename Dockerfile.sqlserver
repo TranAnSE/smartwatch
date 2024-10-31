@@ -1,0 +1,33 @@
+# Use official SQL Server 2022 image
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+# Install necessary tools
+USER root
+RUN apt-get update && apt-get install -y curl gnupg2 && \
+    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update && \
+    ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Add SQL Server tools to PATH
+ENV PATH="/opt/mssql-tools18/bin:${PATH}"
+
+# Configure ODBC driver
+RUN echo "[ODBC Driver 18 for SQL Server]" > /etc/odbc.ini && \
+    echo "Driver = ODBC Driver 18 for SQL Server" >> /etc/odbc.ini && \
+    echo "TrustServerCertificate = yes" >> /etc/odbc.ini && \
+    echo "Encrypt = no" >> /etc/odbc.ini
+
+# Copy initialization SQL script
+COPY ./scripts/init.sql /docker-entrypoint-initdb.d/init.sql
+
+# Copy and set up entrypoint script
+COPY ./scripts/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Expose SQL Server port
+EXPOSE 1433
+
+# Set entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
