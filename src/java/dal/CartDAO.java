@@ -16,7 +16,7 @@ import model.Watch;
  *
  * @author an
  */
-public class CartDAO extends DBContext_Backup {
+public class CartDAO extends DBContext {
 
     public void addToCart(String username, int watchID) {
         String sql = "INSERT INTO carts (Username, WatchID, Quantity) VALUES (?, ?, 1)";

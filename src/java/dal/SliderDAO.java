@@ -15,7 +15,7 @@ import model.Slider;
  *
  * @author an
  */
-public class SliderDAO extends DBContext_Backup {
+public class SliderDAO extends DBContext {
 
     public List<Slider> getActiveSliders() {
         List<Slider> sliders = new ArrayList<>();

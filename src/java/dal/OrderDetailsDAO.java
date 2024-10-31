@@ -16,7 +16,7 @@ import model.Watch;
  *
  * @author an
  */
-public class OrderDetailsDAO extends DBContext_Backup {
+public class OrderDetailsDAO extends DBContext {
 
     public List<OrderDetails> getOrderDetailsByOrderID(String orderID) {
         List<OrderDetails> orderDetailsList = new ArrayList<>();

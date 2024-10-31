@@ -1,13 +1,12 @@
 package dal;
 
-import dal.DBContext_Backup;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashboardDAO extends DBContext_Backup {
+public class DashboardDAO extends DBContext {
 
     public int getCategoryCount() throws SQLException {
         String sql = "SELECT COUNT(*) AS count FROM categories";

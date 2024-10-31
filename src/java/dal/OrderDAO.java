@@ -18,7 +18,7 @@ import model.OrderDetails;
  *
  * @author an
  */
-public class OrderDAO extends DBContext_Backup {
+public class OrderDAO extends DBContext {
 
     public void createOrder(String orderID, double totalMoney, String username) {
         String sql = "INSERT INTO orders (OrderID, TotalMoney, Username) VALUES (?, ?, ?)";

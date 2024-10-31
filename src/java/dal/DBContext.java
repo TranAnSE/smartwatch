@@ -20,7 +20,7 @@ public class DBContext {
         try {
             // Lấy biến môi trường
             String host = System.getenv().getOrDefault("DB_HOST", "localhost");
-            String port = System.getenv().getOrDefault("DB_PORT", "1433");
+            String port = System.getenv().getOrDefault("DB_PORT", "1434");
             String dbName = System.getenv().getOrDefault("DB_NAME", "smartwatch");
             String username = System.getenv().getOrDefault("DB_USER", "sa");
             String password = System.getenv().getOrDefault("DB_PASSWORD", "AnPassw0rd@123");
@@ -36,8 +36,7 @@ public class DBContext {
                     + "trustServerCertificate=true;"
                     + "encrypt=false;"
                     + "integratedSecurity=false;"
-                    + "loginTimeout=30;"
-                    + "authentication=SqlPassword",
+                    + "loginTimeout=30",
                     host, port, dbName);
 
             System.out.println("Attempting to connect to the database...");

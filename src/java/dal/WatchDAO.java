@@ -15,7 +15,7 @@ import model.Watch;
  *
  * @author an
  */
-public class WatchDAO extends DBContext_Backup {
+public class WatchDAO extends DBContext {
 
     public List<Watch> getRecentWatches() {
         List<Watch> watches = new ArrayList<>();

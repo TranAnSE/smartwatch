@@ -15,7 +15,7 @@ import model.User;
  *
  * @author an
  */
-public class UserDAO extends DBContext_Backup {
+public class UserDAO extends DBContext {
 
     public User authenticate(String username, String password) {
         String sql = "SELECT * FROM users WHERE Username = ? AND Password = HASHBYTES('MD5', ?) AND Status = 1";

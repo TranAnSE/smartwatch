@@ -15,7 +15,7 @@ import model.Category;
  *
  * @author an
  */
-public class CategoryDAO extends DBContext_Backup {
+public class CategoryDAO extends DBContext {
 
     public List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<>();
