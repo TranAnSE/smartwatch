@@ -28,8 +28,6 @@ public class DBContext {
 
             String url = String.format("jdbc:sqlserver://%s:%s;"
                     + "databaseName=%s;"
-                    + "encrypt=true;"
-                    + "trustServerCertificate=true;"
                     + "loginTimeout=30;",
                     host, port, dbName);
 
