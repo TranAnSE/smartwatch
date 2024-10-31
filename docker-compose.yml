@@ -8,18 +8,20 @@ services:
       - "8080:8080"  # Tomcat port
       - "1433:1433"  # SQL Server port
     environment:
-      # Environment variables for SQL Server
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=CZR#1*QZMpN0zx0b
       - MSSQL_PID=Developer
+      # Thêm các biến môi trường này
       - MSSQL_ENCRYPT=OPTIONAL
       - MSSQL_TRUST_CERT=true
-      # Environment variables for the web application
-      - DB_HOST=localhost
+      - DB_HOST=127.0.0.1
       - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=CZR#1*QZMpN0zx0b
+      # Thêm biến môi trường cho ODBC
+      - SQLCMDPASSWORD=CZR#1*QZMpN0zx0b
+      - SQLCMDTRUSTSERVERCERTIFICATE=yes
     volumes:
       - sqlserver_data:/var/opt/mssql  # Persistent data for SQL Server
     networks:

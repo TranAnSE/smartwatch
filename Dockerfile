@@ -17,12 +17,18 @@ ENV PATH="/opt/mssql-tools18/bin:${PATH}"
 RUN echo "[ODBC Driver 18 for SQL Server]" > /etc/odbc.ini && \
     echo "Driver = ODBC Driver 18 for SQL Server" >> /etc/odbc.ini && \
     echo "TrustServerCertificate = yes" >> /etc/odbc.ini && \
-    echo "Encrypt = no" >> /etc/odbc.ini
+    echo "Encrypt = OPTIONAL" >> /etc/odbc.ini
+
+# Thêm cấu hình ODBC global
+RUN echo "[ODBC Driver 18 for SQL Server]" > /etc/odbcinst.ini && \
+    echo "Description=Microsoft ODBC Driver 18 for SQL Server" >> /etc/odbcinst.ini && \
+    echo "Driver=/opt/microsoft/msodbcsql18/lib64/libmsodbcsql-18.*.so.*.*.* " >> /etc/odbcinst.ini && \
+    echo "UsageCount=1" >> /etc/odbcinst.ini
 
 # Thiết lập Tomcat
 RUN mkdir -p /usr/local/tomcat
 ENV CATALINA_HOME /usr/local/tomcat
-RUN curl -o /tmp/tomcat.tar.gz https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.0/bin/apache-tomcat-10.1.0.tar.gz && \
+RUN curl -o /tmp/tomcat.tar.gz https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.31/bin/apache-tomcat-10.1.31.tar.gz && \
     tar xzvf /tmp/tomcat.tar.gz -C /usr/local/tomcat --strip-components=1 && \
     rm /tmp/tomcat.tar.gz
 RUN rm -rf /usr/local/tomcat/webapps/*
