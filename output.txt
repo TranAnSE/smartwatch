@@ -1,0 +1,618 @@
+Folder PATH listing for volume FastStorage
+Volume serial number is 22C6-AD90
+D:.
+|   .gitignore
+|   build.xml
+|   DeleteDB.sql
+|   docker-compose.yml
+|   Dockerfile
+|   Dockerfile.db
+|   output.txt
+|   README.md
+|   
++---dist
+|       Ass.war
+|       
++---lib
+|       commons-fileupload-1.4.jar
+|       commons-io-2.11.0.jar
+|       jakarta.servlet-api-5.0.0.jar
+|       jakarta.servlet.jsp.jstl-2.0.0.jar
+|       jakarta.servlet.jsp.jstl-api-2.0.0.jar
+|       jaxb-api-2.1.jar
+|       sqljdbc42.jar
+|       
++---nbproject
+|   |   ant-deploy.xml
+|   |   build-impl.xml
+|   |   genfiles.properties
+|   |   project.properties
+|   |   project.xml
+|   |   
+|   \---private
+|       |   private.properties
+|       |   private.xml
+|       |   
+|       \---retriever
+|           |   catalog.xml
+|           |   
+|           +---jakarta.ee
+|           |   \---xml
+|           |       \---ns
+|           |           \---jakartaee
+|           |                   jakartaee_10.xsd
+|           |                   jakartaee_web_services_client_2_0.xsd
+|           |                   jsp_3_1.xsd
+|           |                   web-app_6_0.xsd
+|           |                   web-common_6_0.xsd
+|           |                   
+|           \---www.w3.org
+|               \---2001
+|                       xml.xsd
+|                       
++---scripts
+|       entrypoint.sh
+|       init-db.sh
+|       init.sql
+|       setup.sh
+|       
++---src
+|   +---conf
+|   |       MANIFEST.MF
+|   |       
+|   \---java
+|       +---config
+|       |       Helper.java
+|       |       
+|       +---controller
+|       |   |   CartController.java
+|       |   |   CategoryController.java
+|       |   |   CreateOrderController.java
+|       |   |   HomeController.java
+|       |   |   LoginController.java
+|       |   |   LogoutController.java
+|       |   |   OrderController.java
+|       |   |   OrderDetailsController.java
+|       |   |   ProfileController.java
+|       |   |   RegisterController.java
+|       |   |   SliderController.java
+|       |   |   WatchController.java
+|       |   |   
+|       |   \---admin
+|       |           AccountController.java
+|       |           CategoryController.java
+|       |           DashboardController.java
+|       |           OrderController.java
+|       |           SliderController.java
+|       |           WatchController.java
+|       |           
+|       +---dal
+|       |       CartDAO.java
+|       |       CategoryDAO.java
+|       |       DashboardDAO.java
+|       |       DBContext.java
+|       |       DBContext_Backup.java
+|       |       OrderDAO.java
+|       |       OrderDetailsDAO.java
+|       |       SliderDAO.java
+|       |       UserDAO.java
+|       |       WatchDAO.java
+|       |       
+|       +---filter
+|       |       AdminFilter.java
+|       |       
+|       +---model
+|       |       Cart.java
+|       |       Category.java
+|       |       Order.java
+|       |       OrderDetails.java
+|       |       Slider.java
+|       |       User.java
+|       |       Watch.java
+|       |       
+|       \---test
+|               DatabaseTest.java
+|               TestInsert.java
+|               
++---test
+\---web
+    |   index.jsp
+    |   
+    +---admin
+    |   |   dashboard.jsp
+    |   |   error.jsp
+    |   |   footer.jsp
+    |   |   header.jsp
+    |   |   
+    |   +---account
+    |   |       list.jsp
+    |   |       
+    |   +---category
+    |   |       list.jsp
+    |   |       
+    |   +---order
+    |   |       list.jsp
+    |   |       
+    |   +---slider
+    |   |       add.jsp
+    |   |       edit.jsp
+    |   |       list.jsp
+    |   |       
+    |   \---watch
+    |           add.jsp
+    |           edit.jsp
+    |           form.bak.jsp
+    |           list.bak.jsp
+    |           list.jsp
+    |           
+    +---assets
+    |   +---css
+    |   |       style.css
+    |   |       
+    |   +---img
+    |   |       admin.png
+    |   |       category-watch.jpg
+    |   |       favicon.png
+    |   |       home.png
+    |   |       logo.png
+    |   |       user.png
+    |   |       
+    |   +---js
+    |   |       main.js
+    |   |       
+    |   +---product
+    |   |       161_BGA-195M-4ADR-1.jpg
+    |   |       1_D155RBL-D156RBL.jpg
+    |   |       2_K7B216C6-K7B236C6.jpg
+    |   |       3_53555-SVMWSV-2.jpg
+    |   |       75_ES4571.jpg
+    |   |       80_D168RWH.jpg
+    |   |       8_T109.410.36.033.00-T109.210.36.033.00.jpg
+    |   |       9_MTP-V300G-7AUDF-LTP-V300G-7AUDF.jpg
+    |   |       can-canh-dong-ho-g-shock-phien-ban-one-piece-dao-hai-tac-dinh-dam-10.jpg
+    |   |       casio-120w-2avdf-nam.jpg
+    |   |       certina-c033-257-36-118-00-nu1-org.jpg
+    |   |       dong-ho-casio-ga-900-4adr_1608805186.jpg
+    |   |       dong-ho-nam-longines-master.png
+    |   |       dong-ho-noi-tieng-the-gioi-tag-heuer.jpg
+    |   |       dong-ho-thong-minh-Gw400S.jpg
+    |   |       dong-ho-titoni-83638-sy-st-606_1614152423.jpg
+    |   |       EM0502-86P.jpg
+    |   |       F-91WM-7ADF.jpg
+    |   |       h24535331_1647486286.jpg
+    |   |       LRW-200H-2E2VDR_1.jpg
+    |   |       LW-200-2AVDF.jpg
+    |   |       m0432361110100_1648626699.jpg
+    |   |       masstel-super-hero-xanh-duong-thumb-1-600x600.jpg
+    |   |       OnePiece.jpg
+    |   |       SHE-3517SG-4AUDF.jpg
+    |   |       srpf70k1_1616495509.jpg
+    |   |       srph33k1_1647917498.jpg
+    |   |       T103.310.36.111.01.jpg
+    |   |       
+    |   \---slider
+    |           slider-1.jpg
+    |           slider-2.jpg
+    |           slider-3.jpg
+    |           slider-4.jpg
+    |           
+    +---client
+    |   |   cart.jsp
+    |   |   create-order.jsp
+    |   |   footer.jsp
+    |   |   header.jsp
+    |   |   index.jsp
+    |   |   login.jsp
+    |   |   profile.jsp
+    |   |   register.jsp
+    |   |   
+    |   +---category
+    |   |       list.jsp
+    |   |       
+    |   +---order
+    |   |       list-orders.jsp
+    |   |       order-details.jsp
+    |   |       
+    |   \---watch
+    |           watch-list.jsp
+    |           
+    +---META-INF
+    |       context.xml
+    |       
+    +---template
+    |   +---adminlte
+    |   |   +---dist
+    |   |   |   +---css
+    |   |   |   |   |   adminlte.css
+    |   |   |   |   |   adminlte.css.map
+    |   |   |   |   |   adminlte.min.css
+    |   |   |   |   |   adminlte.min.css.map
+    |   |   |   |   |   
+    |   |   |   |   \---alt
+    |   |   |   |           adminlte.components.css
+    |   |   |   |           adminlte.components.css.map
+    |   |   |   |           adminlte.components.min.css
+    |   |   |   |           adminlte.components.min.css.map
+    |   |   |   |           adminlte.core.css
+    |   |   |   |           adminlte.core.css.map
+    |   |   |   |           adminlte.core.min.css
+    |   |   |   |           adminlte.core.min.css.map
+    |   |   |   |           adminlte.extra-components.css
+    |   |   |   |           adminlte.extra-components.css.map
+    |   |   |   |           adminlte.extra-components.min.css
+    |   |   |   |           adminlte.extra-components.min.css.map
+    |   |   |   |           adminlte.light.css
+    |   |   |   |           adminlte.light.css.map
+    |   |   |   |           adminlte.light.min.css
+    |   |   |   |           adminlte.light.min.css.map
+    |   |   |   |           adminlte.pages.css
+    |   |   |   |           adminlte.pages.css.map
+    |   |   |   |           adminlte.pages.min.css
+    |   |   |   |           adminlte.pages.min.css.map
+    |   |   |   |           adminlte.plugins.css
+    |   |   |   |           adminlte.plugins.css.map
+    |   |   |   |           adminlte.plugins.min.css
+    |   |   |   |           adminlte.plugins.min.css.map
+    |   |   |   |           
+    |   |   |   \---js
+    |   |   |       |   .eslintrc.json
+    |   |   |       |   adminlte.js
+    |   |   |       |   adminlte.js.map
+    |   |   |       |   adminlte.min.js
+    |   |   |       |   adminlte.min.js.map
+    |   |   |       |   demo.js
+    |   |   |       |   
+    |   |   |       \---pages
+    |   |   |               dashboard.js
+    |   |   |               dashboard2.js
+    |   |   |               dashboard3.js
+    |   |   |               
+    |   |   \---plugins
+    |   |       +---bootstrap
+    |   |       |   \---js
+    |   |       |           bootstrap.bundle.js
+    |   |       |           bootstrap.bundle.js.map
+    |   |       |           bootstrap.bundle.min.js
+    |   |       |           bootstrap.bundle.min.js.map
+    |   |       |           bootstrap.js
+    |   |       |           bootstrap.js.map
+    |   |       |           bootstrap.min.js
+    |   |       |           bootstrap.min.js.map
+    |   |       |           
+    |   |       +---bs-custom-file-input
+    |   |       |       bs-custom-file-input.js
+    |   |       |       bs-custom-file-input.js.map
+    |   |       |       bs-custom-file-input.min.js
+    |   |       |       bs-custom-file-input.min.js.map
+    |   |       |       
+    |   |       +---chart.js
+    |   |       |       Chart.bundle.js
+    |   |       |       Chart.bundle.min.js
+    |   |       |       Chart.css
+    |   |       |       Chart.js
+    |   |       |       Chart.min.css
+    |   |       |       Chart.min.js
+    |   |       |       
+    |   |       +---fontawesome-free
+    |   |       |   +---css
+    |   |       |   |       all.css
+    |   |       |   |       all.min.css
+    |   |       |   |       brands.css
+    |   |       |   |       brands.min.css
+    |   |       |   |       fontawesome.css
+    |   |       |   |       fontawesome.min.css
+    |   |       |   |       regular.css
+    |   |       |   |       regular.min.css
+    |   |       |   |       solid.css
+    |   |       |   |       solid.min.css
+    |   |       |   |       svg-with-js.css
+    |   |       |   |       svg-with-js.min.css
+    |   |       |   |       v4-shims.css
+    |   |       |   |       v4-shims.min.css
+    |   |       |   |       
+    |   |       |   \---webfonts
+    |   |       |           fa-brands-400.eot
+    |   |       |           fa-brands-400.svg
+    |   |       |           fa-brands-400.ttf
+    |   |       |           fa-brands-400.woff
+    |   |       |           fa-brands-400.woff2
+    |   |       |           fa-regular-400.eot
+    |   |       |           fa-regular-400.svg
+    |   |       |           fa-regular-400.ttf
+    |   |       |           fa-regular-400.woff
+    |   |       |           fa-regular-400.woff2
+    |   |       |           fa-solid-900.eot
+    |   |       |           fa-solid-900.svg
+    |   |       |           fa-solid-900.ttf
+    |   |       |           fa-solid-900.woff
+    |   |       |           fa-solid-900.woff2
+    |   |       |           
+    |   |       +---jquery
+    |   |       |       jquery.js
+    |   |       |       jquery.min.js
+    |   |       |       jquery.min.map
+    |   |       |       jquery.slim.js
+    |   |       |       jquery.slim.min.js
+    |   |       |       jquery.slim.min.map
+    |   |       |       
+    |   |       +---select2
+    |   |       |   +---css
+    |   |       |   |       select2.css
+    |   |       |   |       select2.min.css
+    |   |       |   |       
+    |   |       |   \---js
+    |   |       |       |   select2.full.js
+    |   |       |       |   select2.full.min.js
+    |   |       |       |   select2.js
+    |   |       |       |   select2.min.js
+    |   |       |       |   
+    |   |       |       \---i18n
+    |   |       |               af.js
+    |   |       |               ar.js
+    |   |       |               az.js
+    |   |       |               bg.js
+    |   |       |               bn.js
+    |   |       |               bs.js
+    |   |       |               build.txt
+    |   |       |               ca.js
+    |   |       |               cs.js
+    |   |       |               da.js
+    |   |       |               de.js
+    |   |       |               dsb.js
+    |   |       |               el.js
+    |   |       |               en.js
+    |   |       |               es.js
+    |   |       |               et.js
+    |   |       |               eu.js
+    |   |       |               fa.js
+    |   |       |               fi.js
+    |   |       |               fr.js
+    |   |       |               gl.js
+    |   |       |               he.js
+    |   |       |               hi.js
+    |   |       |               hr.js
+    |   |       |               hsb.js
+    |   |       |               hu.js
+    |   |       |               hy.js
+    |   |       |               id.js
+    |   |       |               is.js
+    |   |       |               it.js
+    |   |       |               ja.js
+    |   |       |               ka.js
+    |   |       |               km.js
+    |   |       |               ko.js
+    |   |       |               lt.js
+    |   |       |               lv.js
+    |   |       |               mk.js
+    |   |       |               ms.js
+    |   |       |               nb.js
+    |   |       |               ne.js
+    |   |       |               nl.js
+    |   |       |               pl.js
+    |   |       |               ps.js
+    |   |       |               pt-BR.js
+    |   |       |               pt.js
+    |   |       |               ro.js
+    |   |       |               ru.js
+    |   |       |               sk.js
+    |   |       |               sl.js
+    |   |       |               sq.js
+    |   |       |               sr-Cyrl.js
+    |   |       |               sr.js
+    |   |       |               sv.js
+    |   |       |               th.js
+    |   |       |               tk.js
+    |   |       |               tr.js
+    |   |       |               uk.js
+    |   |       |               vi.js
+    |   |       |               zh-CN.js
+    |   |       |               zh-TW.js
+    |   |       |               
+    |   |       +---select2-bootstrap4-theme
+    |   |       |       select2-bootstrap4.css
+    |   |       |       select2-bootstrap4.min.css
+    |   |       |       
+    |   |       \---sweetalert2
+    |   |               sweetalert2.all.js
+    |   |               sweetalert2.all.min.js
+    |   |               sweetalert2.css
+    |   |               sweetalert2.js
+    |   |               sweetalert2.min.css
+    |   |               sweetalert2.min.js
+    |   |               
+    |   +---home
+    |   |   +---css
+    |   |   |       bootstrap.css
+    |   |   |       custom.css
+    |   |   |       font-awesome.min.css
+    |   |   |       responsive.css
+    |   |   |       style.css
+    |   |   |       style.css.map
+    |   |   |       style.scss
+    |   |   |       
+    |   |   +---fonts
+    |   |   |       fontawesome-webfont.ttf
+    |   |   |       fontawesome-webfont.woff
+    |   |   |       fontawesome-webfont.woff2
+    |   |   |       
+    |   |   +---images
+    |   |   |       about-img.png
+    |   |   |       c1.jpg
+    |   |   |       c2.jpg
+    |   |   |       contact-img.jpg
+    |   |   |       f1.png
+    |   |   |       f2.png
+    |   |   |       f3.png
+    |   |   |       f4.png
+    |   |   |       favicon.png
+    |   |   |       slider-img.png
+    |   |   |       w1.png
+    |   |   |       w2.png
+    |   |   |       w3.png
+    |   |   |       w4.png
+    |   |   |       w5.png
+    |   |   |       w6.png
+    |   |   |       
+    |   |   \---js
+    |   |           bootstrap.js
+    |   |           custom.js
+    |   |           jquery-3.4.1.min.js
+    |   |           
+    |   \---login
+    |       +---css
+    |       |       main.css
+    |       |       util.css
+    |       |       
+    |       +---fonts
+    |       |   +---font-awesome-4.7.0
+    |       |   |   |   HELP-US-OUT.txt
+    |       |   |   |   
+    |       |   |   +---css
+    |       |   |   |       font-awesome.css
+    |       |   |   |       font-awesome.min.css
+    |       |   |   |       
+    |       |   |   +---fonts
+    |       |   |   |       fontawesome-webfont.eot
+    |       |   |   |       fontawesome-webfont.svg
+    |       |   |   |       fontawesome-webfont.ttf
+    |       |   |   |       fontawesome-webfont.woff
+    |       |   |   |       fontawesome-webfont.woff2
+    |       |   |   |       FontAwesome.otf
+    |       |   |   |       
+    |       |   |   +---less
+    |       |   |   |       animated.less
+    |       |   |   |       bordered-pulled.less
+    |       |   |   |       core.less
+    |       |   |   |       fixed-width.less
+    |       |   |   |       font-awesome.less
+    |       |   |   |       icons.less
+    |       |   |   |       larger.less
+    |       |   |   |       list.less
+    |       |   |   |       mixins.less
+    |       |   |   |       path.less
+    |       |   |   |       rotated-flipped.less
+    |       |   |   |       screen-reader.less
+    |       |   |   |       stacked.less
+    |       |   |   |       variables.less
+    |       |   |   |       
+    |       |   |   \---scss
+    |       |   |           font-awesome.scss
+    |       |   |           _animated.scss
+    |       |   |           _bordered-pulled.scss
+    |       |   |           _core.scss
+    |       |   |           _fixed-width.scss
+    |       |   |           _icons.scss
+    |       |   |           _larger.scss
+    |       |   |           _list.scss
+    |       |   |           _mixins.scss
+    |       |   |           _path.scss
+    |       |   |           _rotated-flipped.scss
+    |       |   |           _screen-reader.scss
+    |       |   |           _stacked.scss
+    |       |   |           _variables.scss
+    |       |   |           
+    |       |   +---iconic
+    |       |   |   +---css
+    |       |   |   |       material-design-iconic-font.css
+    |       |   |   |       material-design-iconic-font.min.css
+    |       |   |   |       
+    |       |   |   \---fonts
+    |       |   |           Material-Design-Iconic-Font.eot
+    |       |   |           Material-Design-Iconic-Font.svg
+    |       |   |           Material-Design-Iconic-Font.ttf
+    |       |   |           Material-Design-Iconic-Font.woff
+    |       |   |           Material-Design-Iconic-Font.woff2
+    |       |   |           
+    |       |   \---poppins
+    |       |           Poppins-Black.ttf
+    |       |           Poppins-BlackItalic.ttf
+    |       |           Poppins-Bold.ttf
+    |       |           Poppins-BoldItalic.ttf
+    |       |           Poppins-ExtraBold.ttf
+    |       |           Poppins-ExtraBoldItalic.ttf
+    |       |           Poppins-ExtraLight.ttf
+    |       |           Poppins-ExtraLightItalic.ttf
+    |       |           Poppins-Italic.ttf
+    |       |           Poppins-Light.ttf
+    |       |           Poppins-LightItalic.ttf
+    |       |           Poppins-Medium.ttf
+    |       |           Poppins-MediumItalic.ttf
+    |       |           Poppins-Regular.ttf
+    |       |           Poppins-SemiBold.ttf
+    |       |           Poppins-SemiBoldItalic.ttf
+    |       |           Poppins-Thin.ttf
+    |       |           Poppins-ThinItalic.ttf
+    |       |           
+    |       +---images
+    |       |   |   bg-01.jpg
+    |       |   |   
+    |       |   \---icons
+    |       |           favicon.ico
+    |       |           
+    |       +---js
+    |       |       main.js
+    |       |       
+    |       \---vendor
+    |           +---animate
+    |           |       animate.css
+    |           |       
+    |           +---animsition
+    |           |   +---css
+    |           |   |       animsition.css
+    |           |   |       animsition.min.css
+    |           |   |       
+    |           |   \---js
+    |           |           animsition.js
+    |           |           animsition.min.js
+    |           |           
+    |           +---bootstrap
+    |           |   +---css
+    |           |   |       bootstrap-grid.css
+    |           |   |       bootstrap-grid.css.map
+    |           |   |       bootstrap-grid.min.css
+    |           |   |       bootstrap-grid.min.css.map
+    |           |   |       bootstrap-reboot.css
+    |           |   |       bootstrap-reboot.css.map
+    |           |   |       bootstrap-reboot.min.css
+    |           |   |       bootstrap-reboot.min.css.map
+    |           |   |       bootstrap.css
+    |           |   |       bootstrap.css.map
+    |           |   |       bootstrap.min.css
+    |           |   |       bootstrap.min.css.map
+    |           |   |       
+    |           |   \---js
+    |           |           bootstrap.js
+    |           |           bootstrap.min.js
+    |           |           popper.js
+    |           |           popper.min.js
+    |           |           tooltip.js
+    |           |           
+    |           +---countdowntime
+    |           |       countdowntime.js
+    |           |       
+    |           +---css-hamburgers
+    |           |       hamburgers.css
+    |           |       hamburgers.min.css
+    |           |       
+    |           +---daterangepicker
+    |           |       daterangepicker.css
+    |           |       daterangepicker.js
+    |           |       moment.js
+    |           |       moment.min.js
+    |           |       
+    |           +---jquery
+    |           |       jquery-3.2.1.min.js
+    |           |       
+    |           +---perfect-scrollbar
+    |           |       perfect-scrollbar.css
+    |           |       perfect-scrollbar.min.js
+    |           |       
+    |           \---select2
+    |                   select2.css
+    |                   select2.js
+    |                   select2.min.css
+    |                   select2.min.js
+    |                   
+    \---WEB-INF
+            web.xml
+            
