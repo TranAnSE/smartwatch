@@ -5,7 +5,7 @@ services:
     build: .
     container_name: smartwatch
     ports:
-      - "127.0.0.1:8080:8080"  # Tomcat port
+      - "8080:8080"  # Tomcat port
       - "127.0.0.1:1433:1433"  # SQL Server port
     environment:
       # Environment variables for SQL Server
