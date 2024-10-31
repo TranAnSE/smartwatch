@@ -35,15 +35,18 @@ public class DBContext {
                     + "database=%s;"
                     + "trustServerCertificate=true;"
                     + "encrypt=false;"
+                    + "integratedSecurity=false;" // Thêm dòng này
                     + "loginTimeout=30;",
                     host, port, dbName);
 
             System.out.println("Attempting to connect to the database...");
-
             // Nạp driver và kết nối
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database connected successfully");
+            System.out.println("Connection URL: " + url);
+            System.out.println("Username: " + username);
+            System.out.println("Database Name: " + dbName);
 
         } catch (ClassNotFoundException ex) {
             System.out.println("Database Connection Creation Failed: Driver not found");

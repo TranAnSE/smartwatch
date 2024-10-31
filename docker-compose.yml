@@ -15,11 +15,12 @@ services:
       - MSSQL_ENCRYPT=OPTIONAL
       - MSSQL_TRUST_CERT=true
       # Environment variables for the web application
-      - DB_HOST=localhost
+      - DB_HOST=127.0.0.1
       - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=CZR#1*QZMpN0zx0b
+
     volumes:
       - sqlserver_data:/var/opt/mssql  # Persistent data for SQL Server
     networks:
