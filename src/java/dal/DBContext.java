@@ -15,15 +15,14 @@ public class DBContext {
             String username = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "sa";
             String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "YourStrong@Passw0rd";
 
-            // Build connection URL with explicit boolean values
+            // Build connection URL with explicit boolean values for encrypt and trustServerCertificate
             String connectionUrl = String.format(
                 "jdbc:sqlserver://%s:%s;"
                 + "database=%s;"
                 + "user=%s;"
                 + "password=%s;"
                 + "encrypt=false;"
-                + "trustServerCertificate=true;"
-                + "loginTimeout=30;",
+                + "trustServerCertificate=true;",
                 host, port, dbName, username, password);
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
