@@ -1,20 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
-/**
- *
- * @author an
- */
 public class DBContext {
-
     protected Connection connection;
 
     public DBContext() {
@@ -25,18 +15,19 @@ public class DBContext {
             String username = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "sa";
             String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "YourStrong@Passw0rd";
 
-            // Simplified connection string
-            String url = String.format("jdbc:sqlserver://%s:%s;databaseName=%s;trustServerCertificate=true;encrypt=false",
-                    host, port, dbName);
-
-            Properties props = new Properties();
-            props.setProperty("user", username);
-            props.setProperty("password", password);
-            props.setProperty("trustServerCertificate", "true");
-            props.setProperty("encrypt", "false");
+            // Build connection URL with explicit boolean values
+            String connectionUrl = String.format(
+                "jdbc:sqlserver://%s:%s;"
+                + "database=%s;"
+                + "user=%s;"
+                + "password=%s;"
+                + "encrypt=false;"
+                + "trustServerCertificate=true;"
+                + "loginTimeout=30;",
+                host, port, dbName, username, password);
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, props);
+            connection = DriverManager.getConnection(connectionUrl);
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Database Connection Error: " + ex.getMessage());
             ex.printStackTrace();
