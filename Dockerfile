@@ -1,5 +1,5 @@
 # Use official OpenJDK image as base
-FROM openjdk:17-jdk
+FROM openjdk:17-jdk-slim
 
 # Install required tools and update GPG keys
 RUN apt-get update && \
