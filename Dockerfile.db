@@ -20,8 +20,10 @@ RUN chmod +x /usr/src/app/init-db.sh
 ENV PATH="${PATH}:/opt/mssql-tools18/bin"
 ENV ACCEPT_EULA=Y
 ENV SA_PASSWORD=YourStrong@Passw0rd
-ENV MSSQL_SA_PASSWORD=YourStrong@Passw0rd
 ENV MSSQL_PID=Developer
+
+# Configure SQL Server to trust self-signed certificates
+ENV MSSQL_SSL_CERT_TRUST=1
 
 USER mssql
 EXPOSE 1433
