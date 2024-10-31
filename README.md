@@ -17,7 +17,6 @@
      ```
      curl -fsSL https://get.docker.com -o get-docker.sh
      sudo sh get-docker.sh
-     sudo apt-get install docker-compose-plugin
      ```
    - Step 2: Clone your repository and start the project
      ```
