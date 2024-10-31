@@ -1,8 +1,14 @@
 # Use official OpenJDK image as base
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk
 
-# Install required tools
-RUN apt-get update && apt-get install -y curl && \
+# Install required tools and update GPG keys
+RUN apt-get update && \
+    apt-get install -y wget gnupg2 && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9 && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DCC9EFBF77E11517 && \
+    apt-get update && \
+    apt-get install -y curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Set up Tomcat
