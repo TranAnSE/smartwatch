@@ -38,12 +38,15 @@ public class DBContext {
                     + "serverName=%s;",
                     host, port, dbName, username, password, host);
 
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            System.out.println("Generated URL: " + url);  // In ra URL để debug
+            System.out.println("Attempting connection...");
             connection = DriverManager.getConnection(url);
             System.out.println("Database connected successfully");
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("Database Connection Creation Failed : " + ex.getMessage());
-            System.out.println("Stack trace:");
+        } catch (SQLException ex) {
+            System.out.println("Database Connection Creation Failed");
+            System.out.println("Error message: " + ex.getMessage());
+            System.out.println("SQL State: " + ex.getSQLState());
+            System.out.println("Error Code: " + ex.getErrorCode());
             ex.printStackTrace();
         }
     }
