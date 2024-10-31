@@ -18,35 +18,42 @@ public class DBContext {
 
     public DBContext() {
         try {
-            String host = System.getenv("DB_HOST");
-            String port = System.getenv("DB_PORT");
+            // Lấy biến môi trường
+            String host = System.getenv().getOrDefault("DB_HOST", "localhost");
+            String port = System.getenv().getOrDefault("DB_PORT", "1433");
             String dbName = System.getenv("DB_NAME");
             String username = System.getenv("DB_USER");
             String password = System.getenv("DB_PASSWORD");
 
+            // Kiểm tra nếu biến môi trường bị thiếu
+            if (dbName == null || username == null || password == null) {
+                throw new IllegalArgumentException("Missing environment variables for DB connection.");
+            }
+
+            // Kết nối URL
             String url = String.format("jdbc:sqlserver://%s:%s;"
                     + "database=%s;"
-                    + "user=%s;"
-                    + "password=%s;"
                     + "trustServerCertificate=true;"
                     + "encrypt=false;"
                     + "loginTimeout=30;",
-                    host, port, dbName, username, password);
+                    host, port, dbName);
 
-            System.out.println("Attempting to connect with URL: " + url);
+            System.out.println("Attempting to connect to the database...");
 
+            // Nạp driver và kết nối
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(url, username, password);
             System.out.println("Database connected successfully");
+
         } catch (ClassNotFoundException ex) {
             System.out.println("Database Connection Creation Failed: Driver not found");
             ex.printStackTrace();
         } catch (SQLException ex) {
             System.out.println("Database Connection Creation Failed");
             System.out.println("Error message: " + ex.getMessage());
-            System.out.println("SQL State: " + ex.getSQLState());
-            System.out.println("Error Code: " + ex.getErrorCode());
             ex.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Configuration error: " + ex.getMessage());
         }
     }
 

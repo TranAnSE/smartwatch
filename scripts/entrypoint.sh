@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# Start SQL Server
+# Start SQL Server in the background
 /opt/mssql/bin/sqlservr & 
 
 # Wait for SQL Server to start
@@ -10,7 +10,7 @@ sleep 30
 
 # Function to test SQL connection
 function test_connection() {
-    /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT 1" > /dev/null 2>&1
+    /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT 1" -C -N > /dev/null 2>&1
     return $?
 }
 
@@ -27,7 +27,8 @@ done
 
 # Run initialization script
 echo "Running initialization script..."
-/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -i /docker-entrypoint-initdb.d/init.sql
+/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -i /docker-entrypoint-initdb.d/init.sql -C -N -t 30
 
-# Keep container running
-wait $!
+# Start Tomcat
+echo "Starting Tomcat..."
+catalina.sh run
