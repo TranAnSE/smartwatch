@@ -31,4 +31,4 @@ echo "Running initialization script..."
 
 # Start Tomcat
 echo "Starting Tomcat..."
-catalina.sh run
+/usr/local/tomcat/bin/catalina.sh run
