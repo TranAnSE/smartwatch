@@ -1,44 +1,57 @@
-services:
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      - DB_HOST=db
-      - DB_PORT=1433
-      - DB_NAME=smartwatch
-      - DB_USER=sa
-      - DB_PASSWORD=YourStrong@Passw0rd
-    networks:
-      - app-network
 
-  db:
-    build:
-      context: .
-      dockerfile: Dockerfile.db
-    ports:
-      - "1433:1433"
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
-      - MSSQL_PID=Developer
-    volumes:
-      - sqlserver_data:/var/opt/mssql
-    networks:
-      - app-network
-    healthcheck:
-      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" -C -N -b || exit 1
-      interval: 10s
-      timeout: 3s
-      retries: 10
-      start_period: 30s
+services:
+app:
+  build: .
+  container_name: smartwatch-app
+  ports:
+    - "8080:8080"
+  depends_on:
+    db:
+      condition: service_healthy
+  environment:
+    - DB_HOST=db
+    - DB_PORT=1433
+    - DB_NAME=smartwatch
+    - DB_USER=sa
+    - DB_PASSWORD=YourStrong@Passw0rd
+    - JAVA_OPTS=-Xmx512m -Xms256m
+  networks:
+    - app-network
+  restart: unless-stopped
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+    interval: 30s
+    timeout: 10s
+    retries: 3
+    start_period: 40s
+
+db:
+  build:
+    context: .
+    dockerfile: Dockerfile.db
+  container_name: smartwatch-db
+  ports:
+    - "1433:1433"
+  environment:
+    - ACCEPT_EULA=Y
+    - SA_PASSWORD=YourStrong@Passw0rd
+    - MSSQL_PID=Developer
+  volumes:
+    - sqlserver_data:/var/opt/mssql
+  networks:
+    - app-network
+  restart: unless-stopped
+  healthcheck:
+    test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" -C -N -b || exit 1
+    interval: 10s
+    timeout: 3s
+    retries: 10
+    start_period: 30s
 
 networks:
-  app-network:
-    driver: bridge
+app-network:
+  driver: bridge
 
 volumes:
-  sqlserver_data:
+sqlserver_data:
+  driver: local
