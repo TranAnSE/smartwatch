@@ -1,0 +1,25 @@
+# Use SQL Server 2022
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+# Create work directory
+WORKDIR /usr/src/app
+
+# Copy initialization script and setup script
+COPY scripts/init.sql /usr/src/app/init.sql
+COPY scripts/setup.sh /usr/src/app/setup.sh
+
+# Grant execute permissions to the setup script
+RUN chmod +x /usr/src/app/setup.sh
+
+# Set environment variables
+ENV ACCEPT_EULA=Y
+ENV MSSQL_SA_PASSWORD=YourStrong@Passw0rd
+
+# Expose SQL Server port
+EXPOSE 1433
+
+# Use a custom entrypoint script
+COPY scripts/entrypoint.sh /usr/src/app/entrypoint.sh
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]

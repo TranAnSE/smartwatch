@@ -1,41 +1,45 @@
 version: '3.8'
 
 services:
-  smartwatch:
+  app:
     build: .
-    container_name: smartwatch
     ports:
-      - "8080:8080"  # Tomcat port
-      - "1433:1433"  # SQL Server port
+      - "8080:8080"
+    depends_on:
+      - db
     environment:
-      # Environment variables for SQL Server
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
-      - MSSQL_PID=Developer
-      - MSSQL_ENCRYPT=false
-      - MSSQL_TRUST_CERT=true
-      - MSSQL_TCP_PORT=1433
-      # Environment variables for the web application
-      - DB_HOST=127.0.0.1
+      - DB_HOST=db
       - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=YourStrong@Passw0rd
-
-    volumes:
-      - sqlserver_data:/var/opt/mssql  # Persistent data for SQL Server
     networks:
-      - smartwatch_network
-    restart: on-failure
+      - app-network
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Developer
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+      - ./scripts/init.sql:/usr/src/app/init.sql
+    networks:
+      - app-network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" || exit 1
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
 
 networks:
-  smartwatch_network:
+  app-network:
     driver: bridge
 
 volumes:
