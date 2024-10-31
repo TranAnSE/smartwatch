@@ -22,7 +22,7 @@ public class DBContext {
                 + "user=%s;"
                 + "password=%s;"
                 + "encrypt=false;"
-                + "trustServerCertificate=true;",
+                + "trustServerCertificate=true",
                 host, port, dbName, username, password);
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
