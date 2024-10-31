@@ -1,12 +1,11 @@
-version: '3.8'
-
 services:
   app:
     build: .
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       - DB_HOST=db
       - DB_PORT=1433
@@ -28,7 +27,6 @@ services:
       - MSSQL_PID=Developer
     volumes:
       - sqlserver_data:/var/opt/mssql
-      - ./scripts/init.sql:/usr/src/app/init.sql
     networks:
       - app-network
     healthcheck:
