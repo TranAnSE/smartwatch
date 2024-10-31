@@ -10,7 +10,7 @@ services:
     environment:
       # Environment variables for SQL Server
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=CZR#1*QZMpN0zx0b
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
       - MSSQL_PID=Developer
       - MSSQL_ENCRYPT=OPTIONAL
       - MSSQL_TRUST_CERT=true
@@ -19,7 +19,7 @@ services:
       - DB_PORT=1433
       - DB_NAME=smartwatch
       - DB_USER=sa
-      - DB_PASSWORD=CZR#1*QZMpN0zx0b
+      - DB_PASSWORD=YourStrong@Passw0rd
 
     volumes:
       - sqlserver_data:/var/opt/mssql  # Persistent data for SQL Server
