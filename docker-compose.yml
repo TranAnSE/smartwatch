@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   webapp:
     build: .
@@ -9,9 +7,16 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_PORT=1433
+      - DB_NAME=smartwatch  # Thay bằng tên database của bạn
+      - DB_USER=sa
+      - DB_PASSWORD=CZR#1*QZMpN0zx0b
     networks:
       - smartwatch_network
     restart: on-failure
+
 
   db:
     build:
