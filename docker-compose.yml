@@ -6,7 +6,7 @@ services:
     container_name: smartwatch
     ports:
       - "8080:8080"  # Tomcat port
-      - "127.0.0.1:1433:1433"  # SQL Server port
+      - "1434:1433"  # SQL Server port
     environment:
       # Environment variables for SQL Server
       - ACCEPT_EULA=Y
@@ -15,8 +15,8 @@ services:
       - MSSQL_TRUST_CERT=true
       - MSSQL_ENCRYPT=false
       # Environment variables for the web application
-      - DB_HOST=127.0.0.1
-      - DB_PORT=1433
+      - DB_HOST=localhost
+      - DB_PORT=1434
       - DB_NAME=smartwatch
       - DB_USER=sa
       - DB_PASSWORD=AnPassw0rd@123
