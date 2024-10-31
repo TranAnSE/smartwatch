@@ -12,8 +12,9 @@ services:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
       - MSSQL_PID=Developer
-      - MSSQL_ENCRYPT=OPTIONAL
+      - MSSQL_ENCRYPT=false
       - MSSQL_TRUST_CERT=true
+      - MSSQL_TCP_PORT=1433
       # Environment variables for the web application
       - DB_HOST=127.0.0.1
       - DB_PORT=1433

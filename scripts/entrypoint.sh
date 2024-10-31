@@ -10,7 +10,7 @@ sleep 30
 
 # Function to test SQL connection
 function test_connection() {
-    /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT 1" -C -N > /dev/null 2>&1
+    /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT 1" -C -N -t trust_server_certificate=true > /dev/null 2>&1
     return $?
 }
 
@@ -31,16 +31,16 @@ fi
 
 echo "SQL Server is ready"
 
-# Verify SQL Server connection and password
+# Verify SQL Server connection
 echo "Verifying SQL Server connection..."
-/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT @@VERSION" || {
+/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -Q "SELECT @@VERSION" -C -N -t trust_server_certificate=true || {
     echo "Failed to connect to SQL Server with provided credentials"
     exit 1
 }
 
 # Run initialization script
 echo "Running initialization script..."
-/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -i /docker-entrypoint-initdb.d/init.sql -C -N -t 30
+/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$MSSQL_SA_PASSWORD" -i /docker-entrypoint-initdb.d/init.sql -C -N -t trust_server_certificate=true -t 30
 
 # Start Tomcat
 echo "Starting Tomcat..."

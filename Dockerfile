@@ -13,6 +13,19 @@ RUN apt-get update && apt-get install -y curl gnupg2 openjdk-17-jdk && \
 # Thêm SQL Server tools vào PATH
 ENV PATH="/opt/mssql-tools18/bin:${PATH}"
 
+# Configure SQL Server
+ENV MSSQL_ENCRYPT=false
+ENV MSSQL_TRUST_CERT=true
+
+# Add SQL Server configuration
+RUN mkdir -p /var/opt/mssql/data && \
+    mkdir -p /var/opt/mssql/log && \
+    mkdir -p /var/opt/mssql/secrets
+
+# Set permissions
+RUN chown -R mssql:root /var/opt/mssql && \
+    chmod -R 775 /var/opt/mssql
+
 # Cấu hình driver ODBC cho SQL Server
 RUN echo "[ODBC Driver 18 for SQL Server]" > /etc/odbc.ini && \
     echo "Driver = ODBC Driver 18 for SQL Server" >> /etc/odbc.ini && \
