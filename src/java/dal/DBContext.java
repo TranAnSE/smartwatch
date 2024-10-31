@@ -7,6 +7,7 @@ package dal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  *
@@ -24,17 +25,21 @@ public class DBContext {
             String username = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "sa";
             String password = System.getenv("DB_PASSWORD") != null ? System.getenv("DB_PASSWORD") : "YourStrong@Passw0rd";
 
-            String url = String.format("jdbc:sqlserver://%s:%s;"
-                    + "databaseName=%s;"
-                    + "trustServerCertificate=true;"
-                    + "encrypt=false;"
-                    + "integratedSecurity=false",
+            // Simplified connection string
+            String url = String.format("jdbc:sqlserver://%s:%s;databaseName=%s;trustServerCertificate=true;encrypt=false",
                     host, port, dbName);
 
+            Properties props = new Properties();
+            props.setProperty("user", username);
+            props.setProperty("password", password);
+            props.setProperty("trustServerCertificate", "true");
+            props.setProperty("encrypt", "false");
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url, props);
         } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
+            System.out.println("Database Connection Error: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }
