@@ -1,10 +1,6 @@
 # Use official OpenJDK image as base
 FROM openjdk:17-jdk-slim
 
-# Install required tools
-RUN apt-get update && apt-get install -y curl && \
-    rm -rf /var/lib/apt/lists/*
-
 # Set up Tomcat
 RUN mkdir -p /usr/local/tomcat
 ENV CATALINA_HOME /usr/local/tomcat
